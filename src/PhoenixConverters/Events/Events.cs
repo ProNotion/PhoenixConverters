@@ -6,24 +6,15 @@ namespace PhoenixConverters.Events
 {
     public class Events
     {
-        public class ApplicationStartUp : IApplicationEventHandler
+        public class ApplicationStartUp : ApplicationEventHandler
         {
+	        protected override void ApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
+	        {
+		        base.ApplicationStarting(umbracoApplication, applicationContext);
 
-            public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
-            {
-
-            }
-
-            public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
-            {
-
-            }
-
-            public void OnApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
-            {
-                GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
-                MapWebApiRoutes();
-            }
+				GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+				MapWebApiRoutes();
+			}
 
             private void MapWebApiRoutes()
             {
